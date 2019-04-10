@@ -3,9 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "lodash": "^4.17.11",
+    "moment": "^2.24.0",
+    "momentjs": "^2.0.0",
     "react": "^16.8.6",
+    "react-circular-progressbar": "^1.0.0",
     "react-dom": "^16.8.6",
-    "react-scripts": "2.1.8"
+    "react-geolocation": "^1.0.4",
+    "react-scripts": "2.1.8",
+    "recompose": "^0.30.0",
+    "suncalc": "^1.8.0"
   },
   "scripts": {
     "start": "react-scripts start",

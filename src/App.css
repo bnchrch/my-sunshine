@@ -1,33 +1,83 @@
-.App {
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
+
+  background: linear-gradient(-130deg, #26A5CA, #F7BC81);
+  color: white;
+  height: 100vh;
+  width: 100vw;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+h3 {
+  font-size: 14px;
+  font-weight: 100;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#root {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.App {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.header {
+  display: flex;
+  margin-bottom: 3rem;
+  transition: all .3s ease-out;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.progress {
+  display: flex;
+  width: 50vw;
+  max-width: 500px;
+  min-width: 200px;
+  margin-bottom: 4rem;
+  flex-direction: column;
+}
+
+/*
+ * react-circular-progressbar styles
+ *
+ * All of the styles in this file are optional and configurable!
+ */
+
+ .CircularProgressbar {
+  /*
+   * This fixes an issue where the CircularProgressbar svg has
+   * 0 width inside a "display: flex" container, and thus not visible.
+   *
+   * If you're not using "display: flex", you can remove this style.
+   */
+  width: 100%;
+  padding-bottom: 2rem;
+}
+
+.CircularProgressbar .CircularProgressbar-path {
+  stroke: #fff;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s ease 0s;
+}
+
+.CircularProgressbar .CircularProgressbar-trail {
+  stroke: #fff;
+  opacity: 0.2;
+}
+
+.CircularProgressbar .CircularProgressbar-text {
+  fill: #fff;
+  font-size: 18px;
+  dominant-baseline: middle;
+  text-anchor: middle;
+}
+
+.CircularProgressbar .CircularProgressbar-background {
+  fill: #fff;
 }
