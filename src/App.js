@@ -7,6 +7,11 @@ import moment from 'moment';
 
 import './App.css';
 
+/**
+ * Call a given function every delay period.
+ * @param {Function} callback - The function to call on every interval
+ * @param {Number} delay - The interval to set
+ */
 const useInterval = (callback, delay) => {
   const savedCallback = useRef();
 
@@ -24,15 +29,32 @@ const useInterval = (callback, delay) => {
   }, [delay]);
 }
 
+/**
+ * Calculate the percentage of day light that has passed
+ * @param {Number} hoursLeft - hours until sunset
+ * @param {Number} hoursBetweenTotal - hours between sunset and sunrise
+ */
 const calcPercentage = (hoursLeft, hoursBetweenTotal) => {
   if (hoursLeft > hoursBetweenTotal) {hoursLeft = hoursBetweenTotal};
   return (hoursLeft/ hoursBetweenTotal) * 100;
 }
 
+/**
+ * Get the diff between two dates
+ * @param {Date} start - start time
+ * @param {Date} end - end time
+ */
 const diffBetween = (start, end) => {
   const endTime = moment(end);
   return moment.duration(endTime.diff(start));
 }
+
+/**
+ * Formats a number so that it
+ * 1. Cannot be < 0
+ * 2. Has a trailing 0 if only one digit
+ * @param {Number} number - the number to format
+ */
 const parseTimeInt = (number) => {
   if (number < 0) {number = 0}
 
@@ -41,6 +63,10 @@ const parseTimeInt = (number) => {
     .padStart(2, "0");
 }
 
+/**
+ * Render the text for the countdown
+ * @param {Object} diff - Moment diff
+ */
 const renderCountdown = (diff) => {
   const hours = parseTimeInt(diff.hours());
   const minutes = parseTimeInt(diff.minutes());
@@ -65,31 +91,30 @@ const DayWatch = ({coords: {latitude, longitude}}) => {
   const percentage = calcPercentage(diffLeft, diffBetweenTotal)
 
   return (
-    <div className="progress">
+    <React.Fragment>
       <CircularProgressbar
         percentage={percentage}
         text={renderCountdown(diffLeft)}
       />
-      <h3>(Above is the amount of ☀️ left in your day)</h3>
-    </div>
+      <h3>(Above is the amount of  ☀️ left in your day)</h3>
+    </React.Fragment>
   )
 }
-
-const Loading = () => <div>LOADING</div>
 
 const App = () => (
   <div className="App">
     <h1 className="header">Your life is finite, <br/> spend it in the sunlight.</h1>
     <Geolocation
-      render={(props) => {
-        const {fetchingPosition, position, getCurrentPosition} = props
-        console.log(props)
-        return (
-        fetchingPosition
-          ? <Loading onClick={getCurrentPosition}/>
-          : <DayWatch coords={position.coords} />)
-    }}
+      render={({fetchingPosition, position}) => (
+        <div className={fetchingPosition ? "progress loading" : "progress"}>
+          {
+            !fetchingPosition && <DayWatch coords={position.coords} />
+          }
+        </div>)
+      }
     />
   </div>
 );
+
+
 export default App;

@@ -31,7 +31,12 @@ h3 {
 .header {
   display: flex;
   margin-bottom: 3rem;
-  transition: all .3s ease-out;
+  animation: fadein 3s;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 .progress {
@@ -39,8 +44,16 @@ h3 {
   width: 50vw;
   max-width: 500px;
   min-width: 200px;
-  margin-bottom: 4rem;
   flex-direction: column;
+  transition: all 3000ms 3000ms, opacity 2000ms 4000ms;
+  opacity: 1;
+
+}
+
+.progress.loading {
+  width: 0;
+  opacity: 0;
+  transition: all 1500ms 1500ms, opacity 1500ms 0ms;
 }
 
 /*
