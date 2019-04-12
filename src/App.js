@@ -90,12 +90,16 @@ const DayWatch = ({coords: {latitude, longitude}}) => {
 
   // Calculate the time of sunlight used today
   const percentage = calcPercentage(diffLeft, diffBetweenTotal)
+  const countdownText = renderCountdown(diffLeft)
+
+  // Set title to countdown
+  document.title = countdownText
 
   return (
     <React.Fragment>
       <CircularProgressbar
         percentage={percentage}
-        text={renderCountdown(diffLeft)}
+        text={countdownText}
       />
       <h3>Above is the amount of  ☀️ left in your day</h3>
     </React.Fragment>
