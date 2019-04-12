@@ -4,6 +4,7 @@ import Geolocation from 'react-geolocation';
 import CircularProgressbar from 'react-circular-progressbar';
 import SunCalc from 'suncalc';
 import moment from 'moment';
+import get from 'lodash/fp/get';
 
 import './App.css';
 
@@ -101,16 +102,23 @@ const DayWatch = ({coords: {latitude, longitude}}) => {
   )
 }
 
+const Loading = ({loading}) => <h3 className={!loading && "fade-out"}>loading...</h3>
+
 const App = () => (
   <div className="App">
     <h1 className="header">Your life is finite, <br/> spend it in the sunlight.</h1>
     <Geolocation
-      render={({fetchingPosition, position}) => (
-        <div className={fetchingPosition ? "progress loading" : "progress"}>
-          {
-            !fetchingPosition && <DayWatch coords={position.coords} />
-          }
-        </div>)
+      render={({fetchingPosition, position}) => {
+        const coords = get('coords', position)
+        return (
+          <React.Fragment>
+            <Loading loading={fetchingPosition}/>
+            <div className={coords ? "progress" : "progress loading"}>
+              {
+                coords && <DayWatch coords={coords} />
+              }
+            </div>
+          </React.Fragment>)}
       }
     />
   </div>

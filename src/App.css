@@ -13,11 +13,13 @@ body {
 
 h1 {
   font-size: 2.75rem;
+  margin: 0;
 }
 
 h3 {
   font-size: 14px;
   font-weight: 100;
+  margin: 0;
 }
 
 #root {
@@ -35,7 +37,7 @@ h3 {
 
 .header {
   display: flex;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   animation: fadein 3s;
 }
 
@@ -44,22 +46,29 @@ h3 {
   to   { opacity: 1; }
 }
 
+@keyframes fadeout {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
 .progress {
   display: flex;
-  width: 50vw;
-  max-width: 500px;
-  min-width: 200px;
+  height: 500px;
   flex-direction: column;
-  transition: all 3000ms 3000ms, opacity 2000ms 4000ms;
+  transition: height 3000ms 3000ms, opacity 2000ms 4000ms;
   opacity: 1;
 
 }
 
+.fade-out {
+  opacity: 0;
+  animation: fadeout 2s;
+}
+
 .progress.loading {
-  width: 0;
   height: 0;
   opacity: 0;
-  transition: all 3000ms 3000ms, opacity 2000ms 4000ms;
+  transition: height 3000ms 3000ms, opacity 2000ms 4000ms;
 }
 
 /*
