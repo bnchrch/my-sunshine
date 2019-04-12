@@ -97,7 +97,7 @@ const DayWatch = ({coords: {latitude, longitude}}) => {
         percentage={percentage}
         text={renderCountdown(diffLeft)}
       />
-      <h3>(Above is the amount of  ☀️ left in your day)</h3>
+      <h3>Above is the amount of  ☀️ left in your day</h3>
     </React.Fragment>
   )
 }
