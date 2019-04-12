@@ -41,6 +41,33 @@ h3 {
   animation: fadein 3s;
 }
 
+.progress {
+  display: flex;
+  height: 500px;
+  flex-direction: column;
+  transition: height 3000ms 3000ms, opacity 2000ms 4000ms;
+  opacity: 1;
+}
+
+.fade-out {
+  opacity: 0;
+  animation: fadeout 2s;
+}
+
+.breath {
+  animation: breath linear 2.2s infinite;
+}
+
+.progress.loading {
+  height: 0;
+  opacity: 0;
+  transition: height 3000ms 3000ms, opacity 2000ms 4000ms;
+}
+
+/*
+  Animantions
+*/
+
 @keyframes fadein {
   from { opacity: 0; }
   to   { opacity: 1; }
@@ -51,24 +78,16 @@ h3 {
   to   { opacity: 0; }
 }
 
-.progress {
-  display: flex;
-  height: 500px;
-  flex-direction: column;
-  transition: height 3000ms 3000ms, opacity 2000ms 4000ms;
-  opacity: 1;
-
-}
-
-.fade-out {
-  opacity: 0;
-  animation: fadeout 2s;
-}
-
-.progress.loading {
-  height: 0;
-  opacity: 0;
-  transition: height 3000ms 3000ms, opacity 2000ms 4000ms;
+@keyframes breath{
+  0% {
+    opacity:0;
+  }
+  50% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
 }
 
 /*

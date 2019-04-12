@@ -102,7 +102,7 @@ const DayWatch = ({coords: {latitude, longitude}}) => {
   )
 }
 
-const Loading = ({loading}) => <h3 className={!loading && "fade-out"}>loading...</h3>
+const Loading = ({loading}) => <h3 className={loading ? "breath" : "fade-out"}>loading...</h3>
 
 const App = () => (
   <div className="App">
