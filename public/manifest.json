@@ -1,15 +1,32 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    }
-  ],
+  "short_name": "Sunlight.FYI",
+  "name": "Sunlight.FYI",
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#26A5CA",
+  "background_color": "#ffffff",
+
+
+  "version" : "1.0",
+  "manifest_version" : 2,
+  "description" : "The idea is simple. Show exactly how much daylight is left down to the second. The hope is this gets more people away from their screens and out into the world. Enjoy!",
+
+  "chrome_url_overrides" : {
+    "newtab": "index.html"
+  },
+
+  "browser_action" : {
+    "default_icon": "favicon.ico"
+  },
+
+  "permissions": [
+    "tabs",
+    "geolocation"
+  ],
+
+  "content_security_policy": "script-src 'self' 'sha256-5As4+3YpY62+l38PsxCEkjB1R4YtyktBtRScTJ3fyLU='; script-src 'self' 'sha256-upit+RNzCkMuGGvpjGNvTeNpad7BBvnIXuqQ/wpkahg='; script-src 'self' 'sha256-qZzjjrFQQISTrw4gWY/qseBriA7HZmVBdAWuRK4C9Qk='; object-src 'self'",
+  "background": {
+    "scripts":      ["event.js"],
+    "persistent":   false
+  }
 }

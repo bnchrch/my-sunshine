@@ -1,10 +1,9 @@
+/*global chrome*/
 import React, { useState, useEffect, useRef } from 'react';
 
-import Geolocation from 'react-geolocation';
 import CircularProgressbar from 'react-circular-progressbar';
 import SunCalc from 'suncalc';
 import moment from 'moment';
-import get from 'lodash/fp/get';
 
 import './App.css';
 
@@ -106,27 +105,28 @@ const DayWatch = ({coords: {latitude, longitude}}) => {
   )
 }
 
-const Loading = ({loading}) => <h3 className={loading ? "breath" : "fade-out"}>loading...</h3>
+const Loading = () => <h3 className="breath">loading...</h3>
 
-const App = () => (
-  <div className="App">
-    <h1 className="header">Your life is finite, <br/> spend it in the sunlight.</h1>
-    <Geolocation
-      render={({fetchingPosition, position}) => {
-        const coords = get('coords', position)
-        return (
-          <React.Fragment>
-            <Loading loading={fetchingPosition}/>
-            <div className={coords ? "progress" : "progress loading"}>
-              {
-                coords && <DayWatch coords={coords} />
-              }
-            </div>
-          </React.Fragment>)}
-      }
-    />
-  </div>
-);
+const App = () => {
+  let [coords, setCoords] = useState(undefined);
+
+  // We need to get location from our background.js to avoid being asked
+  // for permission on every load.
+  // https://stackoverflow.com/questions/18307051/i-set-geolocation-permission-in-the-manifest-but-every-page-still-asks-to-share
+  chrome.runtime.sendMessage ( {command: "getLocation"}, setCoords)
+
+  return (
+    <div className="App">
+      <h1 className="header">Your life is finite, <br/> spend it in the sunlight.</h1>
+      {!coords && <Loading/>}
+      <div className="progress">
+        {
+          !!coords && <DayWatch coords={coords} />
+        }
+      </div>
+    </div>
+  );
+};
 
 
 export default App;
