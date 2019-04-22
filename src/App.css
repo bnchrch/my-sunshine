@@ -106,6 +106,31 @@ h3 {
   }
 }
 
+/* Chrome web app */
+.addToChromeButton {
+  text-align: center;
+  top: 0;
+  right: 0;
+  position: absolute;
+  font-size: 14px;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid white;
+  color: white;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  margin: 1rem;
+  transition: all 500ms;
+}
+
+.fa-chrome {
+  padding-right: 5px;
+}
+
+.addToChromeButton:hover {
+  border-color: #d6b890;
+  color: #d6b890;
+}
+
 /*
  * react-circular-progressbar styles
  *
