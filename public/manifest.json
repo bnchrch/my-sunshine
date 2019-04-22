@@ -21,7 +21,7 @@
 
   "version" : "1.0",
   "manifest_version" : 2,
-  "description" : "The idea is simple. Show exactly how much daylight is left down to the second. The hope is this gets more people away from their screens and out into the world. Enjoy!",
+  "description" : "I each new tab this displays exactly how much daylight is left down to the second.",
 
   "chrome_url_overrides" : {
     "newtab": "index.html"
